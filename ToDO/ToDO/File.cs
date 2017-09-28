@@ -27,7 +27,6 @@ namespace ToDO
                 string line;
                 using (var read = new StreamReader(filename))
                 {
-                    line = read.ReadLine();
                     while ((line = read.ReadLine()) != null)
                     {
                         filecontain.Add(line);
