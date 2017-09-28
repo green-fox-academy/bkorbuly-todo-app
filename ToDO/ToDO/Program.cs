@@ -13,6 +13,7 @@ namespace ToDO
         {
             var dolist = new List<string>();
             dolist = File.Read();
+            int original = dolist.Count;
             if (args.Length == 0)
                 Operations.WelcomeMsgWithoutArguments();
             string arg = args[0];
@@ -21,13 +22,14 @@ namespace ToDO
                     case "-l":
                         if (Operations.Counter(dolist) > 0)
                         {
-                            Operations.PrintOutList(dolist);
+                            Operations.PrintOutList(dolist, original);
                         }
                         else
                         {
                             Console.WriteLine("No todos for today!");
                         }
                     break;
+
                     case "-a":
                         if (arg.Length > 0)
                         {
@@ -38,19 +40,34 @@ namespace ToDO
                             Console.WriteLine("Unable to add: no task provided");
                         }
                     break;
+
                     case "-r":
-                        {
-                            Operations.RemoveParamater(args, dolist.Count, dolist);
-                            Operations.AddNumbers(dolist);
-                        }
+                    {
+                        if(Operations.Errorhandling(args, dolist.Count, dolist, "remove"))
+                            {
+                            int nums = Convert.ToInt32(args[1]);
+                            dolist.RemoveAt(nums);
+                            }
+                    }
                     break;
+
+                    case "-c":
+                    {
+                        if (Operations.Errorhandling(args, dolist.Count, dolist, "remove"))
+                        {
+                            int nums = Convert.ToInt32(args[1]);
+                            Operations.Check(nums, dolist);
+                        }
+                    }
+                    break;
+
                     default:
                         {
                             Console.WriteLine("Unsupported argument");
                         }
                     break;
                 }
-            Operations.PrintOutList(dolist);
+            Operations.PrintOutList(dolist, original);
             File.WriteToFile(dolist);
             Console.ReadLine();
         }

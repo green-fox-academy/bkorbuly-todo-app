@@ -22,22 +22,28 @@ namespace ToDO
             Console.WriteLine("-c Completes a task");
         }
 
-        public static void PrintOutList(List<string> todolist)
+        public static void PrintOutList(List<string> todolist, int original)
         {
             string text;
-            AddNumbers(todolist);
+            AddNumbers(todolist, original);
             for (int i = 0; i < todolist.Count; i++)
             {
                 Console.WriteLine(text = todolist[i]);
             }
         }
 
-        public static List<string> AddNumbers(List<string> todolist)
+        public static List<string> AddNumbers(List<string> todolist, int original)
         {
             for (int i = 0; i < todolist.Count; i++)
             {
-                if(!char.IsDigit(todolist[i][0]))
-                todolist[i] = todolist[i].Insert(0, (i + 1) + " - [ ] ");
+                if (original != todolist.Count)
+                {
+                    todolist[i] = todolist[i].Insert(0, (i + 1) + " - [ ] ");
+                }
+                else if (!char.IsDigit(todolist[i][0]))
+                {
+                    todolist[i] = todolist[i].Insert(0, (i + 1) + " - [ ] ");
+                }
             }
             return todolist;
         }
@@ -48,12 +54,13 @@ namespace ToDO
             return counter;
         }
 
-        public static void RemoveParamater(string[] arg, int listlength, List<string> dolist)
+        public static bool Errorhandling(string[] arg, int listlength, List<string> dolist, string text)
         {
             int num = arg.Count();
             if (num == 1)
             {
-                Console.WriteLine("Unable to remove: no index provided");
+                Console.WriteLine("Unable to {0}: no index provided", text);
+                return false;
             }
             else
             {
@@ -62,19 +69,26 @@ namespace ToDO
                     int convert = Convert.ToInt32(arg[1]);
                     if (listlength == convert || listlength < convert)
                     {
-                        Console.WriteLine("Unable to remove: index is out of bound");
+                        Console.WriteLine("Unable to {0}: index is out of bound", text);
+                        return false;
                     }
                     else
                     {
-                        dolist.RemoveAt(Convert.ToInt32(arg[1]));
+                        return true;
                     }
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("Unable to remove: index is not a number");
-                    return;
+                    Console.WriteLine("Unable to {0}: index is not a number", text);
+                    return false;
                 }
             }
+        }
+
+        public static void Check(int num, List<string> dolist)
+        {
+            int position = dolist[num].IndexOf('[') + 1;
+            dolist[num] = dolist[num].Remove(position, 1).Insert( position, "x");
         }
     }
 }
