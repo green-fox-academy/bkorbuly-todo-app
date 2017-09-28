@@ -33,8 +33,8 @@ namespace ToDO
                         if (arg.Length > 0)
                         {
                             Console.WriteLine(args[0]);
-                            Operations.AddElement(args[1]);
-                            File.WriteToFile(dolist);
+                            dolist.Add(args[1]);
+                            
                         }
                         else
                         {
@@ -42,6 +42,7 @@ namespace ToDO
                         }
                         break;
                 }
+            File.WriteToFile(dolist);
             Console.ReadLine();
         }
     }

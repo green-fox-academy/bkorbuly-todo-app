@@ -45,12 +45,5 @@ namespace ToDO
             counter = todolist.Count;
             return counter;
         }
-
-        public static List<string> AddElement(string text)
-        {
-            todolist.Add(text = text.Substring(text.IndexOf('"')));
-            return todolist;
-        }
-
     }
 }
