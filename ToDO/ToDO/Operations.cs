@@ -25,6 +25,7 @@ namespace ToDO
         public static void PrintOutList(List<string> todolist)
         {
             string text;
+            AddNumbers(todolist);
             for (int i = 0; i < todolist.Count; i++)
             {
                 Console.WriteLine(text = todolist[i]);
@@ -35,7 +36,8 @@ namespace ToDO
         {
             for (int i = 0; i < todolist.Count; i++)
             {
-                todolist[i] = todolist[i].Insert(0, (i + 1) + " - ");
+                if(!char.IsDigit(todolist[i][0]))
+                todolist[i] = todolist[i].Insert(0, (i + 1) + " - [ ] ");
             }
             return todolist;
         }

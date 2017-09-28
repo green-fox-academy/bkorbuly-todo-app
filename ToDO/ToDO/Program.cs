@@ -21,7 +21,7 @@ namespace ToDO
                     case "-l":
                         if (Operations.Counter(dolist) > 0)
                         {
-                            Operations.PrintOutList(Operations.AddNumbers(dolist));
+                            Operations.PrintOutList(dolist);
                         }
                         else
                         {
@@ -31,9 +31,7 @@ namespace ToDO
                     case "-a":
                         if (arg.Length > 0)
                         {
-                            Console.WriteLine(args[0]);
                             dolist.Add(args[1]);
-                            
                         }
                         else
                         {
@@ -43,8 +41,8 @@ namespace ToDO
                     case "-r":
                         {
                             Operations.RemoveParamater(args, dolist.Count, dolist);
+                            Operations.AddNumbers(dolist);
                         }
-    
                     break;
                     default:
                         {
@@ -52,6 +50,7 @@ namespace ToDO
                         }
                     break;
                 }
+            Operations.PrintOutList(dolist);
             File.WriteToFile(dolist);
             Console.ReadLine();
         }
