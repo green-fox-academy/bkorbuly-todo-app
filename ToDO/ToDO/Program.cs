@@ -8,10 +8,8 @@ namespace ToDO
 {
     class Program
     {
-        static string[] array = new string[] { "-a",  "\"Monkey\"" };
         static void Main(string[] args)
         {
-            string text;
             var dolist = new List<string>();
             dolist = File.Read();
             if (args.Length == 0)
@@ -28,7 +26,7 @@ namespace ToDO
                         {
                             Console.WriteLine("No todos for today!");
                         }
-                        break;
+                    break;
                     case "-a":
                         if (arg.Length > 0)
                         {
@@ -40,7 +38,13 @@ namespace ToDO
                         {
                             Console.WriteLine("Unable to add: no task provided");
                         }
-                        break;
+                    break;
+                    case "-r":
+                        {
+                            dolist.RemoveAt(Convert.ToInt32(args[1]));
+                        }
+    
+                    break;
                 }
             File.WriteToFile(dolist);
             Console.ReadLine();
