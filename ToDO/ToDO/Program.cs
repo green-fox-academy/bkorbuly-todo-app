@@ -46,6 +46,11 @@ namespace ToDO
                         }
     
                     break;
+                    default:
+                        {
+                            Console.WriteLine("Unsupported argument");
+                        }
+                    break;
                 }
             File.WriteToFile(dolist);
             Console.ReadLine();
