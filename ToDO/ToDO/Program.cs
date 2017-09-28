@@ -10,11 +10,22 @@ namespace ToDO
     {
         static void Main(string[] args)
         {
+            string text;
+            var dolist = new List<string>();
+            {
+                dolist.Add("Walk the dog");
+                dolist.Add("Buy milk");
+                dolist.Add("Do homework");
+            }
             if (args.Length == 0)
-            WelcomeMsgWithoutArguments();
+                WelcomeMsgWithoutArguments();
+            File.CreateFile();
+            dolist = File.Read();
+            File.WriteToFile(dolist);
             Console.ReadLine();
         }
-        static void WelcomeMsgWithoutArguments()
+
+        public static void WelcomeMsgWithoutArguments()
         {
             Console.WriteLine("Command Line Todo application");
             Console.WriteLine("=============================\n");
