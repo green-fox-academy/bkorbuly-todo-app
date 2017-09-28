@@ -8,6 +8,7 @@ namespace ToDO
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             var dolist = new List<string>();
@@ -41,7 +42,7 @@ namespace ToDO
                     break;
                     case "-r":
                         {
-                            dolist.RemoveAt(Convert.ToInt32(args[1]));
+                            Operations.RemoveParamater(args, dolist.Count, dolist);
                         }
     
                     break;

@@ -45,5 +45,34 @@ namespace ToDO
             counter = todolist.Count;
             return counter;
         }
+
+        public static void RemoveParamater(string[] arg, int listlength, List<string> dolist)
+        {
+            int num = arg.Count();
+            if (num == 1)
+            {
+                Console.WriteLine("Unable to remove: no index provided");
+            }
+            else
+            {
+                try
+                {
+                    int convert = Convert.ToInt32(arg[1]);
+                    if (listlength == convert || listlength < convert)
+                    {
+                        Console.WriteLine("Unable to remove: index is out of bound");
+                    }
+                    else
+                    {
+                        dolist.RemoveAt(Convert.ToInt32(arg[1]));
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Unable to remove: index is not a number");
+                    return;
+                }
+            }
+        }
     }
 }
