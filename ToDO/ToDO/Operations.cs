@@ -36,8 +36,9 @@ namespace ToDO
         {
             for (int i = 0; i < todolist.Count; i++)
             {
-                if (original != todolist.Count)
+                if ((original != todolist.Count) && (char.IsDigit(todolist[i][0])))
                 {
+                    todolist[i] = todolist[i].Substring(todolist[i].IndexOf(']')+1);
                     todolist[i] = todolist[i].Insert(0, (i + 1) + " - [ ] ");
                 }
                 else if (!char.IsDigit(todolist[i][0]))
@@ -87,8 +88,7 @@ namespace ToDO
 
         public static void Check(int num, List<string> dolist)
         {
-            int position = dolist[num].IndexOf('[') + 1;
-            dolist[num] = dolist[num].Remove(position, 1).Insert( position, "x");
+           dolist[num] = dolist[num].Replace("[ ]", "[x]");
         }
     }
 }
