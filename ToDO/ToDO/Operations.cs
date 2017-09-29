@@ -38,8 +38,8 @@ namespace ToDO
             {
                 if ((original != todolist.Count) && (char.IsDigit(todolist[i][0])))
                 {
-                    todolist[i] = todolist[i].Substring(todolist[i].IndexOf(']')+2);
-                    todolist[i] = todolist[i].Insert(0, (i + 1) + " - [ ] ");
+                    todolist[i] = todolist[i].Substring(todolist[i].IndexOf('-'));
+                    todolist[i] = todolist[i].Insert(0, (i + 1) + " ");
                 }
                 else if (!char.IsDigit(todolist[i][0]))
                 {
