@@ -38,7 +38,7 @@ namespace ToDO
             {
                 if ((original != todolist.Count) && (char.IsDigit(todolist[i][0])))
                 {
-                    todolist[i] = todolist[i].Substring(todolist[i].IndexOf(']')+1);
+                    todolist[i] = todolist[i].Substring(todolist[i].IndexOf(']')+2);
                     todolist[i] = todolist[i].Insert(0, (i + 1) + " - [ ] ");
                 }
                 else if (!char.IsDigit(todolist[i][0]))
@@ -68,7 +68,7 @@ namespace ToDO
                 try
                 {
                     int convert = Convert.ToInt32(arg[1]);
-                    if (listlength == convert || listlength < convert)
+                    if ( listlength < convert)
                     {
                         Console.WriteLine("Unable to {0}: index is out of bound", text);
                         return false;
@@ -88,7 +88,7 @@ namespace ToDO
 
         public static void Check(int num, List<string> dolist)
         {
-           dolist[num] = dolist[num].Replace("[ ]", "[x]");
+           dolist[num - 1] = dolist[num - 1].Replace("[ ]", "[x]");
         }
     }
 }

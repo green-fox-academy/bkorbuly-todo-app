@@ -46,14 +46,14 @@ namespace ToDO
                         if(Operations.Errorhandling(args, dolist.Count, dolist, "remove"))
                             {
                             int nums = Convert.ToInt32(args[1]);
-                            dolist.RemoveAt(nums);
+                            dolist.RemoveAt(nums - 1);
                             }
                     }
                     break;
 
                     case "-c":
                     {
-                        if (Operations.Errorhandling(args, dolist.Count, dolist, "remove"))
+                        if (Operations.Errorhandling(args, dolist.Count, dolist, "check"))
                         {
                             int nums = Convert.ToInt32(args[1]);
                             Operations.Check(nums, dolist);
